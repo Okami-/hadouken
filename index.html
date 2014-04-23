@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title></title>
+  <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+  <style type="text/css">
+    .moving-hadouken {
+      vertical-align: top;
+      margin-top: 140px;
+      margin-left: -100px;
+    }
+  </style>
+  </head>
+<body>
+  <div id="hadouken-container" style="width:960px">
+    <img id="hadouken" src="ryu_stand_still.png">
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js">
+  </script>
+  <script>
+    $(document).ready(function() {
+      $("#hadouken").hover( function() {
+        this.src='ryu_animated.gif'}, function() {
+          this.src='ryu_stand_still.png';
+        }
+      );
+
+      $("#hadouken").on('mousedown', function() {
+        this.src = 'ryu_hadoken_pose.png';
+      });
+      $("#hadouken").on('mousedown', function() {
+        $('.moving-hadouken').remove();
+      });
+
+      $("#hadouken").on('mousedown', function() {
+        $("#hadouken-container").append('<img class="moving-hadouken" src="hadouken.gif">');
+      });
+
+      $('#hadouken').on('mousedown', function() {
+        $('.moving-hadouken').animate({"margin-left": "200px"}, 1000, 'swing', function() {
+          this.remove();
+        });
+      });
+
+      $('#hadouken').on('mouseup', function() {
+        this.src = 'ryu_animated.gif';
+      });
+
+   });
+  </script>
+</body>
+</html>
